@@ -16,7 +16,7 @@ int main( int argc, char *argv[] )
 
 	char* shmaddr, *s;
 
-	shm_id = shmget(shm_key, SHMSZ, IPC_CREAT | 0666);
+	shm_id = shmget(shm_key, SHMSZ, IPC_CREAT | S_IRUSR | S_IWUSR);
 	shmaddr = (char*)shmat(shm_id, NULL, 0);
 
 	*shmaddr = '*';
