@@ -1,10 +1,12 @@
 #include <stdio.h>
 #include <sys/shm.h>
 #include <sys/stat.h>
+#include "time.h"
 
 #define TOTAL_CHANNELS 30
 
 void delay_ms(unsigned int howLong);
+void delay_us(unsigned int howLong);
 
 int main ()
 {
@@ -40,7 +42,7 @@ while(1) {
     printf ("%s=%s\n", i, shared_memory[i]);
   }
 
-  if(shared_memory[i] == 0 ) {
+  if(shared_memory[0] == 0 ) {
     break;
   }
 }
@@ -50,7 +52,7 @@ while(1) {
 
   /* Deallocate the shared memory segment.*/
   shmctl(shm_id, IPC_RMID, 0);
-  
+
   return 0;
 }
 

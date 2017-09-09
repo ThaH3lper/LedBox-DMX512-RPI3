@@ -16,7 +16,9 @@ int main( int argc, char *argv[] )
 	int channelValue = 0;
 
    if( argc == 2 ) {
-      channelValue = argv[1];
+   	int num;
+	sscanf (argv[1],"%d",&num);
+      channelValue = num;
    }
 
 	printf("writer started.\n");
@@ -25,7 +27,7 @@ int main( int argc, char *argv[] )
 	shm_id = shmget(shm_key, shm_size, IPC_CREAT | S_IRUSR | S_IWUSR);
 
 	/* Attach the shared memory segment. */
-	shmaddr = (char*)shmat(shm_id, 0, 0);
+	shmaddr = (int*)shmat(shm_id, 0, 0);
 
 	printf("shared memory attached at address %p\n", shmaddr);
 
