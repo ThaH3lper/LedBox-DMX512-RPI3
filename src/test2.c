@@ -39,12 +39,14 @@ while(1) {
 
   for (int i = 0; i < TOTAL_CHANNELS; ++i)
   {
-    printf (" %s", shared_memory[i]);
+    printf ("|%s", shared_memory[i]);
   }
 
   if(shared_memory[0] == 0 ) {
     break;
   }
+
+  delay_ms(5000);
 }
 
   /* Detach the shared memory segment. */
