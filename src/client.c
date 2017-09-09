@@ -10,18 +10,18 @@
 
 int main( int argc, char *argv[] )
 {
-  key_t shm_key = 8472;
-  int shm_id;
-  char c;
+    key_t shm_key = 8472;
+    int shm_id;
+    char c;
 
-  char* shmaddr, *s;
+    char* shmaddr, *s;
 
-  shm_id = shmget(shm_key, SHMSZ, IPC_CREAT | S_IRUSR | S_IWUSR);
-  shmaddr = (char*)shmat(shm_id, 0, 0);
+    shm_id = shmget(shm_key, SHMSZ, IPC_CREAT | S_IRUSR | S_IWUSR);
+    shmaddr = (char*)shmat(shm_id, 0, 0);
 
-  for (c = 'a'; c <= 'z'; c++)
-      *s++ = c;
-  *s = '*';
+    for (c = 'a'; c <= 'z'; c++)
+        *s++ = c;
+    *s = '*';
 
-  return 0;
+    return 0;
 }
