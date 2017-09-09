@@ -16,10 +16,10 @@ int main( int argc, char *argv[] )
 	shm_id = shmget(shm_key, SHMSZ, IPC_CREAT | 0666);
 	shmaddr = (char*)shmat(shm_id, NULL, 0);
 
-	*shmaddr = NULL;
+	*shmaddr = '*';
 
 	while(1) {
-	    for (s = shmaddr; *s != NULL; s++)
+	    for (s = shmaddr; *s != '*'; s++)
 	        putchar(*s);
 	    putchar('\n');
 		sleep(100);

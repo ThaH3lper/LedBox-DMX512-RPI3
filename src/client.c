@@ -18,9 +18,9 @@ int main( int argc, char *argv[] )
 
   for (c = 'a'; c <= 'z'; c++)
       *s++ = c;
-  *s = NULL;
+  *s = '*';
 
-    for (s = shmaddr; *s != NULL; s++)
+    for (s = shmaddr; *s != '*'; s++)
         putchar(*s);
     putchar('\n');
 
