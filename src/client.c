@@ -9,11 +9,12 @@ int main( int argc, char *argv[] )
 {
   key_t shm_key = 6166529;
   int shm_id;
+  char c;
 
-  char* shmaddr;
+  char* shmaddr, *s;
 
-  shm_id = shmget(shm_key, shm_size, 0666);
-  shmaddr = (char*)shmat(shm_id, 0, 0);
+  shm_id = shmget(shm_key, SHMSZ, 0666);
+  shmaddr = (char*)shmat(shm_id, NULL, 0);
 
   for (c = 'a'; c <= 'z'; c++)
       *s++ = c;
