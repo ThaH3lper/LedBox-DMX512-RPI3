@@ -23,9 +23,5 @@ int main( int argc, char *argv[] )
       *s++ = c;
   *s = '*';
 
-    for (s = shmaddr; *s != '*'; s++)
-        putchar(*s);
-    putchar('\n');
-
   return 0;
 }

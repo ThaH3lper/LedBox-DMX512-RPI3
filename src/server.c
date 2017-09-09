@@ -19,7 +19,8 @@ int main( int argc, char *argv[] )
 	shm_id = shmget(shm_key, SHMSZ, IPC_CREAT | S_IRUSR | S_IWUSR);
 	shmaddr = (char*)shmat(shm_id, 0, 0);
 
-	*shmaddr = '*';
+	s = shmaddr;
+	*s = '*';
 
 	while(1) {
 	    for (s = shmaddr; *s != '*'; s++)
