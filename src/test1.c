@@ -42,6 +42,7 @@ int main( int argc, char *argv[] )
 
 	/*calling the other process*/
 	//system("./read");
+	getchar();
 
 	/* Detach the shared memory segment. */
 	shmdt(shmaddr);
