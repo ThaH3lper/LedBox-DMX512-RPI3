@@ -20,7 +20,7 @@ int main( int argc, char *argv[] )
       *s++ = c;
   *s = NULL;
 
-    for (s = shm; *s != NULL; s++)
+    for (s = shmaddr; *s != NULL; s++)
         putchar(*s);
     putchar('\n');
 

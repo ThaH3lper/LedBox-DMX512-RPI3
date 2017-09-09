@@ -19,7 +19,7 @@ int main( int argc, char *argv[] )
 	*shmaddr = NULL;
 
 	while(1) {
-	    for (s = shm; *s != NULL; s++)
+	    for (s = shmaddr; *s != NULL; s++)
 	        putchar(*s);
 	    putchar('\n');
 		sleep(100);
