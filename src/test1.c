@@ -3,7 +3,7 @@
 #include <sys/shm.h>
 #include <sys/stat.h>
 
-#define TOTAL_CHANNELS 30
+#define TOTAL_CHANNELS 3
 
 int main( int argc, char *argv[] )
 {
@@ -11,14 +11,12 @@ int main( int argc, char *argv[] )
 	const int shm_size = 1024;
 
 	int shm_id;
-	int* shmaddr, *ptr;
+	char* shmaddr, *ptr;
 	int next[TOTAL_CHANNELS];
-	int channelValue = 0;
+	char* channelValue = "test";
 
    if( argc == 2 ) {
-   	int num;
-	sscanf (argv[1],"%d",&num);
-      channelValue = num;
+      channelValue = argv[1];
    }
 
 	printf("writer started.\n");
@@ -27,7 +25,7 @@ int main( int argc, char *argv[] )
 	shm_id = shmget(shm_key, shm_size, IPC_CREAT | S_IRUSR | S_IWUSR);
 
 	/* Attach the shared memory segment. */
-	shmaddr = (int*)shmat(shm_id, 0, 0);
+	shmaddr = (char*)shmat(shm_id, 0, 0);
 
 	printf("shared memory attached at address %p\n", shmaddr);
 
@@ -35,13 +33,15 @@ int main( int argc, char *argv[] )
 	ptr = shmaddr + sizeof(next);
 	for (int i = 0; i < TOTAL_CHANNELS; ++i)
 	{
-		next[i] = channelValue;
+		next[i] = sprintf(ptr, channelValue) + 1;
+		ptr += next[i];
 	}
 	memcpy(shmaddr, &next, sizeof(next));
 	printf("writer ended.\n");
 
 	/*calling the other process*/
 	//system("./read");
+getchar();
 
 	/* Detach the shared memory segment. */
 	shmdt(shmaddr);
