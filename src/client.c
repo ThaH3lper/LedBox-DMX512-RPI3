@@ -10,7 +10,7 @@
 
 int main( int argc, char *argv[] )
 {
-  key_t shm_key = 6166529;
+  key_t shm_key = 8472;
   int shm_id;
   char c;
 
