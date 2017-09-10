@@ -91,9 +91,9 @@ int main( int argc, char *argv[] )
     printf("%s Started sucessfully", TAG);
     int running = 1;
 	while(running) {
-        switch(s*) {
+        switch(*s) {
             case '9':
-                running = false;
+                running = 0;
             break;
         }
         if(strcmp(s, OldString) != 0) {
