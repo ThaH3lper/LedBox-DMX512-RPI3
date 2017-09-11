@@ -35,14 +35,16 @@ int main( int argc, char *argv[] )
 
 	key_t shm_key = 8472;
 	int shm_id;
-    int size = 1 + 2 * CHANNELS;
+    int size = 1 + 2 * CHANNELS; //status + HEX * channels
 	char c;
 
 	char* shmaddr, *s;
 
+    //Setup shared memory, create if not already exist.
 	shm_id = shmget(shm_key, SHMSZ, IPC_CREAT | 0666);
 	shmaddr = (char*)shmat(shm_id, 0, 0);
 
+    //Setup DMX
     ftStatus = FT_Open(iport, &ftHandle);
 	if (ftStatus != FT_OK) {
     	/* 
@@ -69,8 +71,8 @@ int main( int argc, char *argv[] )
 	}
 	memset(&DMX_Data[0],0,sizeof(DMX_Data));
 
+    //Setup defaults for shared memory
 	s = shmaddr;
-
     char* status = "0";
     char* channel_value = "FF";
     char* data;
@@ -85,42 +87,54 @@ int main( int argc, char *argv[] )
     }
     s = shmaddr;
 
+    //Set all channels to white.
     for (int i = 0; i < 512; i++) {
 		DMX_Data[i] = 255;
 	}
+
     printf("%s Started sucessfully\n", TAG);
     int running = 1;
 	while(running) {
+        //Check status
         switch(*s) {
             case '9':
                 running = 0;
             break;
         }
+
+        //Check if string changed and send data
         if(strcmp(s, OldString) != 0) {
+
+            //Set OldString to current
             strcpy(OldString, s);
+
+            //Translate from hex to byte and insert into data
             for (int i = 0; i < CHANNELS; i++) {
                 int pos = i * 2 + 1;
     			char subbuff[3];
-    			memcpy( subbuff, &s[pos], 2);
+    			memcpy(subbuff, &s[pos], 2);
     			subbuff[3] = '\0';
     			
+                //First ledstrip starts at index 1
     			DMX_Data[i+1] = strtol(subbuff, NULL, 16);
     		}
 
+            //Send Dmx
     		ftStatus = FT_SetBreakOn(ftHandle);
     		delay_ms(10);
     		ftStatus = FT_SetBreakOff(ftHandle);
     		delay_us(8);
     		ftStatus = FT_Write(ftHandle, Start, sizeof(Start), &BytesWritten);
     		ftStatus = FT_Write(ftHandle, DMX_Data, sizeof(DMX_Data), &BytesWritten);
-            printf("Changed Color\n");
+
+            //Print current data
             printf("Status: %s\n",&s[0]);
             for(int i = 0; i < CHANNELS; i += 3) {
-              printf("%i|%i %i %i\n",i/3,DMX_Data[i+1], DMX_Data[i+2], DMX_Data[i+3]);
+                printf("%i|%i %i %i\n",i/3,DMX_Data[i+1], DMX_Data[i+2], DMX_Data[i+3]);
             }
     		delay_ms(1000);
-            //putchar('\n');
         } else {
+            //Do noting just wait
             delay_ms(1000);
         }
     }
