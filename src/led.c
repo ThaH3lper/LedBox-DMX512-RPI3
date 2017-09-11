@@ -68,7 +68,7 @@ int main( int argc, char *argv[] )
     }
 
     //Copy data to shared memory
-    printf("%s", data);
+    printf("Sent: %s\n", data);
     for(int i = 0; i < size; i++) {
        *s = data[i];
        s++;	
