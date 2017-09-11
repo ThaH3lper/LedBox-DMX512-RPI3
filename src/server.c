@@ -21,7 +21,7 @@ BYTE Start[] = {0x00};
 BYTE MAB[256] = {0};
 BYTE DMX_Data[512];
 DWORD   BytesWritten;
-char* OldString = "old";
+char OldString[SHMSZ];
 
 char* TAG = "[Led Server]";
 
@@ -88,7 +88,7 @@ int main( int argc, char *argv[] )
     for (int i = 0; i < 512; i++) {
 		DMX_Data[i] = 255;
 	}
-    printf("%s Started sucessfully", TAG);
+    printf("%s Started sucessfully\n", TAG);
     int running = 1;
 	while(running) {
         switch(*s) {
@@ -97,14 +97,14 @@ int main( int argc, char *argv[] )
             break;
         }
         if(strcmp(s, OldString) != 0) {
-            *OldString = *s;
+            strcpy(OldString, s);
             for (int i = 0; i < CHANNELS; i++) {
                 int pos = i * 2 + 1;
     			char subbuff[3];
     			memcpy( subbuff, &s[pos], 2);
     			subbuff[3] = '\0';
     			
-    			DMX_Data[i] = strtol(subbuff, NULL, 16);
+    			DMX_Data[i+1] = strtol(subbuff, NULL, 16);
     		}
 
     		ftStatus = FT_SetBreakOn(ftHandle);
@@ -113,17 +113,18 @@ int main( int argc, char *argv[] )
     		delay_us(8);
     		ftStatus = FT_Write(ftHandle, Start, sizeof(Start), &BytesWritten);
     		ftStatus = FT_Write(ftHandle, DMX_Data, sizeof(DMX_Data), &BytesWritten);
-            printf("%s Changed Color", TAG);
+            printf("Changed Color\n");
+            printf("Status: %s\n",&s[0]);
+            for(int i = 0; i < CHANNELS; i += 3) {
+              printf("%i|%i %i %i\n",i/3,DMX_Data[i+1], DMX_Data[i+2], DMX_Data[i+3]);
+            }
     		delay_ms(1000);
-            //for(int i = 0; i < CHANNELS; i++) {
-            //   printf("%i",DMX_Data[i]);
-            //}
             //putchar('\n');
         } else {
             delay_ms(1000);
         }
     }
-    printf("%s Closed sucessfully", TAG);
+    printf("%s Closed sucessfully\n", TAG);
 
 	return 0;
 }

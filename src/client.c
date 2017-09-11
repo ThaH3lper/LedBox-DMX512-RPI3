@@ -23,27 +23,48 @@ int main( int argc, char *argv[] )
     shmaddr = (char*)shmat(shm_id, 0, 0);
     s = shmaddr;
 
-    char* status = "1";
     char* channel_r = "00";
     char* channel_g = "00";
     char* channel_b = "00";
-    
-	if(argc == 4) {
-      channel_b = argv[1];
-      channel_g = argv[2];
-      channel_r = argv[3];
-    }
 
     char* data;
     data = malloc(size);
-    strcpy(data, status);
+    
+	if(argc == 4) {
+      channel_b = argv[1]; 
+      channel_g = argv[2];
+      channel_r = argv[3];
 
-    for(int i = 0; i < CHANNELS/3; i++) {
-        strcat(data, channel_r);
+    memcpy(data, &s[0], 1);
+
+     for(int i = 0; i < CHANNELS/3; i++) {
         strcat(data, channel_g);
         strcat(data, channel_b);
+        strcat(data, channel_r);
+     }
     }
 
+
+if(argc == 2) {
+memcpy(data, argv[1], 1);
+memcpy(data + 1, &s[1], size - 1);
+
+}
+
+	if(argc == 5) {
+      int index = atoi(argv[1]);
+      channel_b = argv[2];
+      channel_g = argv[3];
+      channel_r = argv[4];
+
+memcpy(data, &s[0], size);
+memcpy(data + index * 6 + 1, channel_g, 2);
+memcpy(data + index * 6 + 3, channel_b, 2);
+memcpy(data + index * 6 + 5, channel_r, 2);
+    }
+
+strcat(data, "\n");
+printf("%s",data);
     for(int i = 0; i < size; i++) {
        *s = data[i];
        s++;	
