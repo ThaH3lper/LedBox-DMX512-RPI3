@@ -63,7 +63,7 @@ int main( int argc, char *argv[] )
     	return 1;
 	}
  
-	ftStatus = FT_SetBaudRate(ftHandle, 120000);
+	ftStatus = FT_SetBaudRate(ftHandle, 220000);
 	if (ftStatus != FT_OK) {
 		FT_Close(ftHandle);
 		printf("Can't set baudrate\n");
@@ -116,19 +116,23 @@ int main( int argc, char *argv[] )
     			subbuff[3] = '\0';
     			
                 //First ledstrip starts at index 1
-    			DMX_Data[i+1] = strtol(subbuff, NULL, 16);
+    			DMX_Data[i+1] = strtol(subbuff, NULL, 16) / 2;
     		}
 
             //Send Dmx
     		ftStatus = FT_SetBreakOn(ftHandle);
     		delay_ms(10);
     		ftStatus = FT_SetBreakOff(ftHandle);
-    		delay_us(8);
+    		delay_us(18);
     		ftStatus = FT_Write(ftHandle, Start, sizeof(Start), &BytesWritten);
     		ftStatus = FT_Write(ftHandle, DMX_Data, sizeof(DMX_Data), &BytesWritten);
 
             //Print current data
             printf("Status: %s\n",&s[0]);
+            for(int i = 0; i < CHANNELS+5; i++) {
+                printf("%i|",DMX_Data[i]);
+            }
+             printf("\n");
             for(int i = 0; i < CHANNELS; i += 3) {
                 printf("%i|%i %i %i\n",i/3,DMX_Data[i+1], DMX_Data[i+2], DMX_Data[i+3]);
             }

@@ -9,7 +9,7 @@
  
 BYTE Start[] = {0x00};
 BYTE MAB[256] = {0};
-BYTE DMX_Data[512];
+BYTE DMX_Data[35];
 DWORD   BytesWritten;
  
 void delay_ms(unsigned int howLong);
@@ -35,21 +35,32 @@ int main(void)
 	}
 	printf( "FT_OPEN DONE");
  
-	ftStatus = FT_SetDataCharacteristics(ftHandle, FT_BITS_8, FT_STOP_BITS_2,FT_PARITY_NONE);
+	ftStatus = FT_SetDataCharacteristics(ftHandle, 8, 2, 0);
 	if(ftStatus != FT_OK)
 	{
 	FT_Close(ftHandle);
 					printf("Can't set characteristics\n");
 					return 1;
 	}
+
+//
+ftStatus = FT_SetDivisor(ftHandle,12);
+ftStatus = FT_SetFlowControl(ftHandle, 0, 0, 0);
+ftStatus = FT_ClrRts(ftHandle);
+ftStatus = FT_Purge(ftHandle, 2);
+ftStatus = FT_Purge(ftHandle, 1);
+//
  
-	ftStatus = FT_SetBaudRate(ftHandle,120000);
+	ftStatus = FT_SetBaudRate(ftHandle,240000);
 			if(ftStatus != FT_OK) {
 					FT_Close(ftHandle);
 					printf("Can't set baudrate\n");
 					return 1;
 			}
 	//////////////////////////////////////////////////////////////////////////////////////////
+
+
+//////////////////////////////////////////////////////////////////////////////////////////
  
 	memset(&DMX_Data[0],0,sizeof(DMX_Data));
 
@@ -57,24 +68,22 @@ int main(void)
  
 	while(1)
 	{       
+memset(&DMX_Data[1],100,1);
+memset(&DMX_Data[2],100,1);
+memset(&DMX_Data[3],100,1);
+//DMX_Data[1] = 0x64;
+//DMX_Data[2] = 0x64;
+//DMX_Data[3] = 0x64;
 
-		for (int i = 0; i < 512; i++)
-		{
-			DMX_Data[i] = 255;
-		}
-
- 
-		//////////////////////////////////////////////////////////////////////////////////
-		 printf( "Begin Write");
 		/////////////////////////// Send DMX512 Packet ///////////////////////////////////
 		ftStatus = FT_SetBreakOn(ftHandle);
 		delay_ms(10); //10ms delay
 		ftStatus = FT_SetBreakOff(ftHandle);
 		delay_us(8);
 		ftStatus = FT_Write(ftHandle,Start,sizeof(Start),&BytesWritten);
+BytesWritten = 0;
 		ftStatus = FT_Write(ftHandle,DMX_Data,sizeof(DMX_Data),&BytesWritten);
 		delay_ms(15);
-		printf( "success Write");
 		//////////////////////////////////////////////////////////////////////////////////
  
 		}

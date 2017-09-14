@@ -14,7 +14,7 @@ class SendController extends Controller
     public function testview(Request $request)
     {
     	$red = $request->input('color');
-    	$process = new Process('test.exe ' . hexdec(substr($red, 4, 2)) . ' ' . hexdec(substr($red, 2, 2)) . ' ' . hexdec(substr($red, 0, 2)));
+    	$process = new Process('led ' . substr($red, 0, 2) . ' ' . substr($red, 2, 2) . ' ' . substr($red, 4, 2));
 		$process->run();
         return view('testsend', ['name' => $red]);
     }
