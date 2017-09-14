@@ -19,6 +19,15 @@ class SendController extends Controller
         return view('testsend', ['name' => $red]);
     }
 
+    public function singleColorView(Request $request)
+    {
+        $channel = $request->input('channel');
+        $color = $request->input('color');
+        $process = new Process('led ' . $channel . ' ' . substr($color, 0, 2) . ' ' . substr($color, 2, 2) . ' ' . substr($color, 4, 2));
+        $process->run();
+        return view('singlesend', ['color' => $color]);
+    }
+
     public function update(Request $request, $id)
     {
         
