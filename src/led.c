@@ -46,16 +46,10 @@ int main( int argc, char *argv[] )
             strcat(data, channel_b);
             strcat(data, channel_r);
         }
-    }
-
-    //Set status -> STATUS
-    if(argc == 2) {
+    } else if(argc == 2) {
         memcpy(data, argv[1], 1);
         memcpy(data + 1, &s[1], size - 1);
-    }
-
-    //Set color for one channel -> CHANNEL RED GREEN BLUE
-	if(argc == 5) {
+    } else if(argc == 5) {
         int index = atoi(argv[1]);
         channel_b = argv[2];
         channel_g = argv[3];
@@ -65,7 +59,9 @@ int main( int argc, char *argv[] )
         memcpy(data + index * 6 + 1, channel_g, 2);
         memcpy(data + index * 6 + 3, channel_b, 2);
         memcpy(data + index * 6 + 5, channel_r, 2);
-    }
+    } else {
+     return 0;
+}
 
     //Copy data to shared memory
     printf("Sent: %s\n", data);

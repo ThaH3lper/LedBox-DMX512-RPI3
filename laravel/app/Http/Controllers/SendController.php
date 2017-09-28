@@ -14,8 +14,10 @@ class SendController extends Controller
     public function testview(Request $request)
     {
     	$red = $request->input('color');
-    	$process = new Process('led ' . substr($red, 0, 2) . ' ' . substr($red, 2, 2) . ' ' . substr($red, 4, 2));
+	if(isset($red)) {
+    	        $process = new Process('led ' . substr($red, 0, 2) . ' ' . substr($red, 2, 2) . ' ' . substr($red, 4, 2));
 		$process->run();
+        }
         return view('testsend', ['name' => $red]);
     }
 
@@ -23,8 +25,10 @@ class SendController extends Controller
     {
         $channel = $request->input('channel');
         $color = $request->input('color');
-        $process = new Process('led ' . $channel . ' ' . substr($color, 0, 2) . ' ' . substr($color, 2, 2) . ' ' . substr($color, 4, 2));
-        $process->run();
+	if(isset($channel) && isset($color)) {
+            $process = new Process('led ' . $channel . ' ' . substr($color, 0, 2) . ' ' . substr($color, 2, 2) . ' ' . substr($color, 4, 2));
+            $process->run();
+	}
         return view('singlesend', ['color' => $color]);
     }
 
