@@ -10,6 +10,7 @@
 #include "time.h"
 #include <fcntl.h>
 #include <sys/ioctl.h>
+#include <math.h>
 
 #define SHMSZ      1024
 #define CHANNELS     30
@@ -141,7 +142,7 @@ int main( int argc, char *argv[] )
             {
                 float percentag = i/100.0f;
                 for (int i = 0; i < CHANNELS; i++) {
-                    DMX_Data[i+1] = DMX_Orginal_Data[i+1] - (BYTE)((float)(DMX_Orginal_Data[i+1] - DMX_Target_Data[i+1]) * percentag);
+                    DMX_Data[i+1] = DMX_Orginal_Data[i+1] - ceil((float)(DMX_Orginal_Data[i+1] - DMX_Target_Data[i+1]) * percentag);
                 }
 
                 //Send Dmx
