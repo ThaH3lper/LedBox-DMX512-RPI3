@@ -20,6 +20,8 @@ void delay_us(unsigned int howLong);
 BYTE Start[] = {0x00};
 BYTE MAB[256] = {0};
 BYTE DMX_Data[512];
+BYTE DMX_Target_Data[512];
+BYTE DMX_Orginal_Data[512];
 DWORD   BytesWritten;
 char OldString[SHMSZ];
 
@@ -70,6 +72,7 @@ int main( int argc, char *argv[] )
 		return 1;
 	}
 	memset(&DMX_Data[0],0,sizeof(DMX_Data));
+    memset(&DMX_Target_Data[0],0,sizeof(DMX_Target_Data));
 
     //Setup defaults for shared memory
 	s = shmaddr;
@@ -90,6 +93,7 @@ int main( int argc, char *argv[] )
     //Set all channels to white.
     for (int i = 0; i < 512; i++) {
 		DMX_Data[i] = 255;
+        DMX_Target_Data[i] = 255;
 	}
 
     printf("%s Started sucessfully\n", TAG);
@@ -116,16 +120,28 @@ int main( int argc, char *argv[] )
     			subbuff[3] = '\0';
     			
                 //First ledstrip starts at index 1
-    			DMX_Data[i+1] = strtol(subbuff, NULL, 16) / 2;
+    			DMX_Target_Data[i+1] = strtol(subbuff, NULL, 16) / 2;
+                DMX_Orginal_Data[i+1] = DMX_Data[i+1];
     		}
 
-            //Send Dmx
-    		ftStatus = FT_SetBreakOn(ftHandle);
-    		delay_ms(10);
-    		ftStatus = FT_SetBreakOff(ftHandle);
-    		delay_us(18);
-    		ftStatus = FT_Write(ftHandle, Start, sizeof(Start), &BytesWritten);
-    		ftStatus = FT_Write(ftHandle, DMX_Data, sizeof(DMX_Data), &BytesWritten);
+            printf("Start fading:");
+            for (int i = 0; i <= 100; ++i)
+            {
+                float percentag = i/100.0f;
+                for (int i = 0; i < CHANNELS; i++) {
+                    DMX_Data[i+1] = DMX_Orginal_Data[i+1] + (int)((float)(DMX_Orginal_Data[i+1] - DMX_Orginal_Data[i+1]) * percentag);
+                }
+
+                //Send Dmx
+                ftStatus = FT_SetBreakOn(ftHandle);
+                delay_ms(10);
+                ftStatus = FT_SetBreakOff(ftHandle);
+                delay_us(18);
+                ftStatus = FT_Write(ftHandle, Start, sizeof(Start), &BytesWritten);
+                ftStatus = FT_Write(ftHandle, DMX_Data, sizeof(DMX_Data), &BytesWritten);
+
+                delay_ms(25);
+            }
 
             //Print current data
             printf("Status: %s\n",&s[0]);
@@ -136,7 +152,6 @@ int main( int argc, char *argv[] )
             for(int i = 0; i < CHANNELS; i += 3) {
                 printf("%i|%i %i %i\n",i/3,DMX_Data[i+1], DMX_Data[i+2], DMX_Data[i+3]);
             }
-    		delay_ms(1000);
         } else {
             //Do noting just wait
             delay_ms(1000);
