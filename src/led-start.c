@@ -126,24 +126,12 @@ int main( int argc, char *argv[] )
                 memcpy(DMX_Orginal_Data, &DMX_Data[0], 512);
     		}
 
-            printf("Start fading\n");
-            printf("DMX_Orginal_Data: %s\n",&s[0]);
-            for(int i = 0; i < CHANNELS+5; i++) {
-                printf("%i|",DMX_Orginal_Data[i]);
-            }
-            printf("\n");
-            printf("DMX_Target_Data: %s\n",&s[0]);
-            for(int i = 0; i < CHANNELS+5; i++) {
-                printf("%i|",DMX_Target_Data[i]);
-            }
-            printf("\n");
-
             for (int i = 0; i <= 100; ++i)
             {
                 float percentag = i/100.0f;
                 for (int i = 0; i < CHANNELS; i++) {
-                    int test = ((DMX_Orginal_Data[i+1] - DMX_Target_Data[i+1]) * percentag);
-                    DMX_Data[i+1] = DMX_Orginal_Data[i+1] - test;
+                    int temp = ((DMX_Orginal_Data[i+1] - DMX_Target_Data[i+1]) * percentag);
+                    DMX_Data[i+1] = DMX_Orginal_Data[i+1] - temp;
                 }
 
                 //Send Dmx
