@@ -122,7 +122,7 @@ int main( int argc, char *argv[] )
     			
                 //First ledstrip starts at index 1
     			DMX_Target_Data[i+1] = strtol(subbuff, NULL, 16) / 2;
-                DMX_Orginal_Data[i+1] = DMX_Data[i+1];
+                memcpy(DMX_Orginal_Data, &DMX_Data[0], 512);
     		}
 
             printf("Start fading:");
