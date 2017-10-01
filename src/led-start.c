@@ -130,6 +130,7 @@ int main( int argc, char *argv[] )
                 float percentag = i/100.0f;
                 for (int i = 0; i < CHANNELS; i++) {
                     DMX_Data[i+1] = DMX_Orginal_Data[i+1] + (int)((float)(DMX_Orginal_Data[i+1] - DMX_Orginal_Data[i+1]) * percentag);
+                    printf("%s ", DMX_Orginal_Data[i+1] + (int)((float)(DMX_Orginal_Data[i+1] - DMX_Orginal_Data[i+1]) * percentag));
                 }
 
                 //Send Dmx
