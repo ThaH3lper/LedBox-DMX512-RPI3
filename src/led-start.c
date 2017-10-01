@@ -92,8 +92,9 @@ int main( int argc, char *argv[] )
 
     //Set all channels to white.
     for (int i = 0; i < 512; i++) {
-		DMX_Data[i] = 255;
-        DMX_Target_Data[i] = 255;
+		DMX_Data[i] = 127;
+        DMX_Target_Data[i] = 127;
+        DMX_Orginal_Data[i] = 127;
 	}
 
     printf("%s Started sucessfully\n", TAG);
