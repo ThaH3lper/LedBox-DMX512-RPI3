@@ -15,6 +15,7 @@
                     <h1 class="display-3">Ledlight</h1>
                     <img src="http://www.whycatwhy.com/wp-content/uploads/2016/03/pair-of-crazy-cats.jpg" width="100%">
                     <p class="lead"></p>
+                    <p><a class="btn btn-lg btn-primary" href="{{ action('SendController@colorpicker') }}" role="button">Set all channels, Beta</a></p>
                     <p><a class="btn btn-lg btn-success" href="{{ action('SendController@testview') }}" role="button">Set all channels</a></p>
                     <p><a class="btn btn-lg btn-success" href="{{ action('SendController@singleColorView') }}" role="button">Set single channel</a></p>
                   </div>

@@ -14,21 +14,25 @@ class SendController extends Controller
     public function testview(Request $request)
     {
     	$red = $request->input('color');
-	if(isset($red)) {
-    	        $process = new Process('led ' . substr($red, 0, 2) . ' ' . substr($red, 2, 2) . ' ' . substr($red, 4, 2));
+    	$process = new Process('led ' . substr($red, 0, 2) . ' ' . substr($red, 2, 2) . ' ' . substr($red, 4, 2));
 		$process->run();
-        }
         return view('testsend', ['name' => $red]);
+    }
+
+    public function colorpicker(Request $request)
+    {
+        $color_hex = $request->input('color');
+        $process = new Process('led ' . substr($color_hex, 0, 2) . ' ' . substr($color_hex, 2, 2) . ' ' . substr($color_hex, 4, 2));
+        $process->run();
+        return view('colorpicker', ['color_hex' => $color_hex]);
     }
 
     public function singleColorView(Request $request)
     {
         $channel = $request->input('channel');
         $color = $request->input('color');
-	if(isset($channel) && isset($color)) {
-            $process = new Process('led ' . $channel . ' ' . substr($color, 0, 2) . ' ' . substr($color, 2, 2) . ' ' . substr($color, 4, 2));
-            $process->run();
-	}
+        $process = new Process('led ' . $channel . ' ' . substr($color, 0, 2) . ' ' . substr($color, 2, 2) . ' ' . substr($color, 4, 2));
+        $process->run();
         return view('singlesend', ['color' => $color]);
     }
 

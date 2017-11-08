@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/colorpicker', 'SendController@colorpicker');
+
 Route::get('/test', 'SendController@testview');
 
 Route::get('/channel', 'SendController@singleColorView');

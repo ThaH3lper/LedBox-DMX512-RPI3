@@ -1,0 +1,102 @@
+.top{
+	width: auto;
+	height: 25%;
+	box-sizing: border-box;
+}
+
+.buttom{
+	width: auto;
+	height: 70%;
+	box-sizing: border-box;
+}
+
+html, body {
+	height: 100%;
+	box-sizing: border-box;
+}
+.container {
+	height: 100%;
+	padding-left: 15px;
+	padding-right: 15px;
+	border: none;
+}
+
+.slider{
+	float: left;
+	height: 100%;
+	width: 33%;
+	padding: 0 12.5%;
+}
+
+#redslider{
+  height: 100%;
+}
+
+#greenslider{
+  height: 100%;
+}
+
+#blueslider{
+  height: 100%;
+}
+
+input[type=range] {
+   writing-mode: bt-lr; /* IE */
+  -webkit-appearance: slider-vertical; /* WebKit */
+  width: 100%; /* Specific width is required for Firefox. */
+  height: 100%;
+  background: transparent; /* Otherwise white in Chrome */
+}
+
+/*input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}*/
+
+/* Special styling for WebKit/Blink */
+input[type=range]::-webkit-slider-thumb {
+-webkit-appearance: none; 
+  border: 1px solid #000000;
+  height: 36px;
+  width: 40px;
+  border-radius: 3px;
+  /*background: #ffffff;*/
+  /*cursor: pointer;*/
+  /*margin-top: -14px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d; /* Add cool effects to your sliders! */
+}
+
+/* All the same stuff for Firefox 
+input[type=range]::-moz-range-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+/* All the same stuff for IE 
+input[type=range]::-ms-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+}*/
+
+input[type=range]:focus {
+  outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  cursor: pointer;
+
+  /* Hides the slider so custom styles can be added */
+  background: transparent; 
+  border-color: transparent;
+  color: transparent;
+}
