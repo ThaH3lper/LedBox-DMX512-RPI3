@@ -18,3 +18,5 @@ Route::get('/sliderpicker', 'SendController@sliderpicker');
 Route::get('/allsend', 'SendController@allsend');
 
 Route::get('/channel', 'SendController@singleColorView');
+
+Route::get('/api', 'SendController@api');

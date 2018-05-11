@@ -11,14 +11,17 @@ use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class SendController extends Controller
 {
-    private function hexToInt($hex)
-    {
-        return max(0, min(127, floor(hexdec($hex) / 2)));
-    }
-
     public function welcome(Request $request)
     {
         return view('welcome');
+    }
+
+    public function api(Request $request)
+    {
+        $command = $request->input('command');
+        $process = new Process($command);
+        $process->run();
+        return $command;
     }
 
     public function allsend(Request $request)
