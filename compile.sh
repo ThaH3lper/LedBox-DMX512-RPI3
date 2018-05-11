@@ -16,5 +16,5 @@ g++ LedLib/src/Led.cpp LedLib/src/Dmx/DmxController.cpp LedLib/src/SharedMemory/
 
 
 printf "\033[0;32m[Builds Completed]\n"
-sudo cp .LedLib/build/Led /usr/bin/
+sudo cp ./LedLib/build/Led /usr/bin/
 printf "\033[0;32m[File copied]\n"
