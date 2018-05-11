@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,15 +12,11 @@
         <div class="container">
             <div class="row">
               <div class="col-lg-12">
-                    <form action="{{ action('SendController@singleColorView') }}" method="get">
+                    <form action="{{ action('SendController@allsend') }}" method="get">
                         <div id="cp2" class="input-group colorpicker colorpicker-component"> 
-                            <input name="color" class="jscolor jscolor-active" type="text" value="{{$color}}">
+                            <input name="color" class="jscolor jscolor-active" type="text" value="{{$name}}">
                         </div>
                         <script src="{{ URL::asset('assets/scripts/jscolor.js') }}"></script>
-                        <input type="radio" name="channel" value="1"> Left of TV<br>
-                        <input type="radio" name="channel" value="2"> Center of TV<br>
-                        <input type="radio" name="channel" value="3"> Right of TV<br>
-                        <input type="radio" name="channel" value="0"> Bass
                         <input class="btn btn-lg btn-success" style="width:100%;" type="submit" value="Send">
                     </form>
                     <br>

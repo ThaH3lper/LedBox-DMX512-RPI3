@@ -11,12 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'SendController@welcome');
 
-Route::get('/colorpicker', 'SendController@colorpicker');
+Route::get('/sliderpicker', 'SendController@sliderpicker');
 
-Route::get('/test', 'SendController@testview');
+Route::get('/allsend', 'SendController@allsend');
 
 Route::get('/channel', 'SendController@singleColorView');

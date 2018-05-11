@@ -21,6 +21,10 @@ html, body {
 	border: none;
 }
 
+.btn.btn-lg.btn-primary.full-width{
+  width: 100%
+}
+
 .slider{
 	float: left;
 	height: 100%;

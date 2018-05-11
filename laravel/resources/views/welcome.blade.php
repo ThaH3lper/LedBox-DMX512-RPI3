@@ -11,14 +11,14 @@
         <div class="container">
             <div class="row">
               <div class="col-lg-12">
-                  <div class="jumbotron">
-                    <h1 class="display-3">Ledlight</h1>
-                    <img src="http://www.whycatwhy.com/wp-content/uploads/2016/03/pair-of-crazy-cats.jpg" width="100%">
+                  <!--<div class="jumbotron">-->
+                    <h1 class="text-center">Ledlight</h1>
+                    <img src="https://img00.deviantart.net/434b/i/2015/031/e/c/hd_desktop_background__galaxy_cat_by_pattersondesigns-d8g4mn9.png" width="100%">
                     <p class="lead"></p>
-                    <p><a class="btn btn-lg btn-primary" href="{{ action('SendController@colorpicker') }}" role="button">Set all channels, Beta</a></p>
-                    <p><a class="btn btn-lg btn-success" href="{{ action('SendController@testview') }}" role="button">Set all channels</a></p>
-                    <p><a class="btn btn-lg btn-success" href="{{ action('SendController@singleColorView') }}" role="button">Set single channel</a></p>
-                  </div>
+                    <p><a class="btn-block btn-lg btn-success" href="{{ action('SendController@singleColorView') }}" role="button">Set single channel</a></p>
+                    <p><a class="btn-block btn-lg btn-success" href="{{ action('SendController@allsend') }}" role="button">Set all channels</a></p>
+                    <p><a class="btn-block btn-lg btn-primary" href="{{ action('SendController@sliderpicker') }}" role="button">Set all channels, Beta</a></p>
+                  <!--</div>-->
               </div>
             </div>
         </div>

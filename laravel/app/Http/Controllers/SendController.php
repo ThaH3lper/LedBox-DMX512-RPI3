@@ -11,20 +11,25 @@ use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class SendController extends Controller
 {
-    public function testview(Request $request)
+    public function welcome(Request $request)
     {
-    	$red = $request->input('color');
-    	$process = new Process('led ' . substr($red, 0, 2) . ' ' . substr($red, 2, 2) . ' ' . substr($red, 4, 2));
-		$process->run();
-        return view('testsend', ['name' => $red]);
+        return view('welcome');
     }
 
-    public function colorpicker(Request $request)
+    public function allsend(Request $request)
     {
-        $color_hex = $request->input('color');
-        $process = new Process('led ' . substr($color_hex, 0, 2) . ' ' . substr($color_hex, 2, 2) . ' ' . substr($color_hex, 4, 2));
+    	$color = $request->input('color');
+    	$process = new Process('led ' . substr($color, 0, 2) . ' ' . substr($color, 2, 2) . ' ' . substr($color, 4, 2));
+		$process->run();
+        return view('allsend', ['name' => $color]);
+    }
+
+    public function sliderpicker(Request $request)
+    {
+        $color = $request->input('color');
+        $process = new Process('led ' . substr($color, 0, 2) . ' ' . substr($color, 2, 2) . ' ' . substr($color, 4, 2));
         $process->run();
-        return view('colorpicker', ['color_hex' => $color_hex]);
+        return view('sliderpicker', ['color_hex' => $color]);
     }
 
     public function singleColorView(Request $request)
