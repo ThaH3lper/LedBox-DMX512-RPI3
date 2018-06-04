@@ -2,7 +2,7 @@
 #define BASEBEHAVIOR_H
 #include <stdio.h>
 #include <algorithm>
-#include <chrono>
+#include <time.h>
 #include <math.h>
 #include "../global.h"
 
@@ -35,7 +35,18 @@ public:
          mGreen = green;
          mBlue = blue;
          mInterval = DEFAULT_INTERVAL;
-         mStartTime = std::time(nullptr);
+
+         struct timespec gettime_now;
+         clock_gettime(CLOCK_REALTIME, &gettime_now);
+         time_t s = gettime_now.tv_sec;
+         long ms = round(gettime_now.tv_nsec / 1.0e6);
+         if (ms > 999) {
+             s++;
+             ms = 0;
+         }
+
+         mStartTime = (s * 1000.0) + ms;
+         //mStartTime = std::time(nullptr) * 1000.0;
    	}
 
       BaseBehavior & operator=(BaseBehavior const & other) = default;

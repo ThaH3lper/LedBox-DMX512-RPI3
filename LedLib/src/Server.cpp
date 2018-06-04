@@ -52,7 +52,16 @@ void Server::start() {
         }
 
         //Calculate delta value for update
-        long double currentTime = std::time(nullptr);
+         struct timespec gettime_now;
+         clock_gettime(CLOCK_REALTIME, &gettime_now);
+         time_t s = gettime_now.tv_sec;
+         long ms = round(gettime_now.tv_nsec / 1.0e6);
+         if (ms > 999) {
+             s++;
+             ms = 0;
+         }
+         long double currentTime = (s * 1000.0) + ms;
+         printf("%Lf\n", currentTime);
 
         int interval = update(currentTime);
         //printf("update: %x\n", interval);

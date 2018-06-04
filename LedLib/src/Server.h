@@ -5,7 +5,7 @@
 #include "Behavior/BootBehavior.hpp"
 #include "Dmx/DmxController.h"
 #include <unistd.h> //Sleep
-#include <ctime>
+#include <time.h>
 #include <string.h>
 #include "global.h"
 #include "Selector/Selector.hpp"

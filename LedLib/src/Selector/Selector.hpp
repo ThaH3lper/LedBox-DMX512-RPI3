@@ -2,7 +2,6 @@
 #define SELECTOR_H
 #include <stdio.h>
 #include <algorithm>
-#include <ctime>
 #include <math.h>
 #include "../global.h"
 #include "../Behavior/BaseBehavior.hpp"
