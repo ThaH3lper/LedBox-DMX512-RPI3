@@ -52,7 +52,7 @@ void Server::start() {
         }
 
         //Calculate delta value for update
-        long double currentTime = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now().time_since_epoch()).count();
+        long double currentTime = std::time(nullptr);
 
         int interval = update(currentTime);
         //printf("update: %x\n", interval);
