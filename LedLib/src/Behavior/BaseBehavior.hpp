@@ -35,8 +35,7 @@ public:
          mGreen = green;
          mBlue = blue;
          mInterval = DEFAULT_INTERVAL;
-         mStartTime = std::chrono::system_clock::now().time_since_epoch() / 
-            std::chrono::milliseconds(1);
+         mStartTime = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now().time_since_epoch()).count();
    	}
 
       BaseBehavior & operator=(BaseBehavior const & other) = default;

@@ -70,18 +70,18 @@ int main (int argc, char *argv[])
 				temp[channelStart * global::MAX_CHANNEL_DATA + argIndex - 3] = (unsigned char) std::strtol(argv[argIndex],&pos,10);
 			}
 			sm.writeMemory(temp, global::DATA_SIZE);
-		} else {
-			printf(GREEN "[LedLight]" RESET);
-			printf(YELLOW "Created by Patrik Nilsson" RESET);
-			printf(GRAY "./Led start | Start the server" RESET);
-			printf(GRAY "./Led stop  | Stop the server" RESET);
-			printf(GRAY "./Led all [PROGRAM] | Set program for all channels" RESET);
-			printf(GRAY "./Led channel [PROGRAM] | Set program for single channel" RESET);
-			printf(GRAY "-------- Programs ----------" RESET);
-			printf(GRAY "1 [R] [G] [B] | Simple fade to color" RESET);
-			printf(GRAY "2 [minR] [maxR] [minG] [maxG] [minB] [maxB] [speed] [offset] | Set sin curver" RESET);
 		}
-	}
+	} else {
+			printf(GREEN "[LedLight]" RESET "\n");
+			printf(YELLOW "Created by Patrik Nilsson" RESET "\n");
+			printf(GRAY "./Led start | Start the server" RESET "\n");
+			printf(GRAY "./Led stop  | Stop the server" RESET "\n");
+			printf(GRAY "./Led all [PROGRAM] | Set program for all channels" RESET "\n");
+			printf(GRAY "./Led channel [PROGRAM] | Set program for single channel" RESET "\n");
+			printf(GRAY "-------- Programs ----------" RESET "\n");
+			printf(GRAY "1 [R] [G] [B] | Simple fade to color" RESET "\n");
+			printf(GRAY "2 [minR] [maxR] [minG] [maxG] [minB] [maxB] [speed] [offset] | Set sin curver" RESET "\n");
+		}
 	return 0;
 }
 #endif
