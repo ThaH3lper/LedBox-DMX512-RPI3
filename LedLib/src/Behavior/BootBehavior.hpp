@@ -35,8 +35,8 @@ public:
 
    BootBehavior & operator=(const BootBehavior&) = default;
 
-   void update(unsigned long currentTime) {
-      unsigned long delta = (currentTime - mStartTime);
+   void update(long double currentTime) {
+      long double delta = (currentTime - mStartTime);
       if (delta > FADE_TO_FINAL + (FADE_TO_FINAL_TIME * 1000.0)) {
          mGreen = mFinalGreen;
          mRed = mFinalRed;

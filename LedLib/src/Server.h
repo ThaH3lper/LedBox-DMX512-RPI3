@@ -19,7 +19,7 @@ private:
 	DmxController mDmxController;
 	Selector mSelector;
 
-	double update(double delta);
+	double update(long double delta);
 
 public:
 

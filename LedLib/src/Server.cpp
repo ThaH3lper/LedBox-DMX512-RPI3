@@ -77,11 +77,11 @@ void Server::stop() {
     printf("Will exit on next update...\n");
 }
 
-double Server::update(double delta) {
+double Server::update(long double currentTime) {
     double lowest = 10000;
     for (int i = 0; i < 10; ++i)
     {
-        mBehaviors[i]->update(delta);
+        mBehaviors[i]->update(currentTime);
 
         if(i == 0) {
             printf(RED "setChannel(%i, %i, %i, %i)", i, mBehaviors[i]->getGreen(), mBehaviors[i]->getRed(), mBehaviors[i]->getBlue());

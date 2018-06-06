@@ -35,7 +35,7 @@ public:
 
       FadeToSimple & operator=(const FadeToSimple&) = default;
 
-      void update(unsigned long currentTime) {
+      void update(long double currentTime) {
          double value = (currentTime - mStartTime) / FROM_ZERO_TO_ONE / 1000.0;
          if (value <= 1.0) {
             mRed = mRedStart + mRedDiff * value;

@@ -68,6 +68,6 @@ public:
       	return mBlue;
       }
 
-      virtual void update(unsigned long currentTime) {};
+      virtual void update(long double currentTime) {};
 };
 #endif

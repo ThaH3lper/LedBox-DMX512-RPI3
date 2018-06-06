@@ -48,7 +48,7 @@ public:
 
       SinCurve & operator=(const SinCurve&) = default;
 
-      void update(unsigned long currentTime) {
+      void update(long double currentTime) {
          double value = (currentTime - mStartTime) / FROM_ZERO_TO_ONE / 1000.0;
          double zeroToOne = sin((value / mSpeed) + mOffset / 10.0) * 0.5 + 0.5;
 
