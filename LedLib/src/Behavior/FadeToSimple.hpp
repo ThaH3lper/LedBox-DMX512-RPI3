@@ -30,6 +30,8 @@ public:
          mGreenDiff = newGreen - mGreen;
          mBlueDiff = newBlue - mBlue;
 
+         printf("%i\n", mRedDiff);
+
          mInterval = 1;
    	}
 

@@ -18,9 +18,9 @@ private:
    char mFinalBlue = 0;
 
 public:
-	BootBehavior(unsigned char red, 
-	   		unsigned char green, 
-	   		unsigned char blue, double delay) 
+	BootBehavior(char red, 
+	   		char green, 
+	   		char blue, double delay) 
    : BaseBehavior(red, green, blue) {
       mFadeColorRed = red;
       mFadeColorGreen = green;
