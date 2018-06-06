@@ -7,15 +7,15 @@ class BootBehavior : public BaseBehavior {
 private:
    double FADE_IN_AND_OUT_TIME = 0.6;
    double mDelay;
-   char mFadeColorRed;
-   char mFadeColorGreen;
-   char mFadeColorBlue;
+   signed char mFadeColorRed;
+   signed char mFadeColorGreen;
+   signed char mFadeColorBlue;
 
    double FADE_TO_FINAL = 1650.0;
    double FADE_TO_FINAL_TIME = 2.0;
-   char mFinalRed = 127;
-   char mFinalGreen = 25;
-   char mFinalBlue = 0;
+   signed char mFinalRed = 127;
+   signed char mFinalGreen = 25;
+   signed char mFinalBlue = 0;
 
 public:
 	BootBehavior(char red, 

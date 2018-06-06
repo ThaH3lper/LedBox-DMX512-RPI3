@@ -6,24 +6,24 @@ class SinCurve : public BaseBehavior {
 
 private:
    double FROM_ZERO_TO_ONE = 1.0;
-   char mRedDiff;
-   char mGreenDiff;
-   char mBlueDiff;
+   signed char mRedDiff;
+   signed char mGreenDiff;
+   signed char mBlueDiff;
 
-   char minimumRed;
-   char minimumGreen;
-   char minimumBlue;
+   signed char minimumRed;
+   signed char minimumGreen;
+   signed char minimumBlue;
 
-   char mSpeed;
-   char mOffset;
+   signed char mSpeed;
+   signed char mOffset;
 
 public:
-   	SinCurve(char red, char green, char blue,
-               char minRed, char maxRed,
-               char minGreen, char maxGreen,
-               char minBlue, char maxBlue,
-               char speed,
-               char offset) 
+   	SinCurve(signed char red, signed char green, signed char blue,
+               signed char minRed, signed char maxRed,
+               signed char minGreen, signed char maxGreen,
+               signed char minBlue, signed char maxBlue,
+               signed char speed,
+               signed char offset) 
       : BaseBehavior(red, green, blue) {
 
          mRedDiff = maxRed - minRed;

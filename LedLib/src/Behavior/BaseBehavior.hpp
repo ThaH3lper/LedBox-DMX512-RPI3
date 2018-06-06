@@ -15,9 +15,9 @@ protected:
 	double mInterval;
    long double mStartTime;
    long double mCurrentTime;
-	char mRed;
-	char mGreen;
-	char mBlue;
+	signed char mRed;
+	signed char mGreen;
+	signed char mBlue;
 
 public:
       BaseBehavior() {
@@ -27,9 +27,9 @@ public:
          mInterval = DEFAULT_INTERVAL;
       }
 
-   	BaseBehavior(char red, 
-		   		char green, 
-		   		char blue) {
+   	BaseBehavior(signed char red, 
+		   		signed char green, 
+		   		signed char blue) {
 
          mRed = red;
          mGreen = green;
@@ -45,15 +45,15 @@ public:
       	return mInterval;
       }
 
-      char getRed() {
+      signed char getRed() {
       	return mRed;
       }
 
-      char getGreen() {
+      signed char getGreen() {
       	return mGreen;
       }
 
-      char getBlue() {
+      signed char getBlue() {
       	return mBlue;
       }
 

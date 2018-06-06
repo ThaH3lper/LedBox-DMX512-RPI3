@@ -10,9 +10,9 @@ private:
    signed char mGreenDiff;
    signed char mBlueDiff;
 
-   char mRedStart;
-   char mGreenStart;
-   char mBlueStart;
+   signed char mRedStart;
+   signed char mGreenStart;
+   signed char mBlueStart;
 
 public:
    	FadeToSimple(char red, 
@@ -26,11 +26,9 @@ public:
          mGreenStart = green;
          mBlueStart = blue;
 
-         mRedDiff = newRed - ((signed char) mRed);
-         mGreenDiff = newGreen - ((signed char) mGreen);
-         mBlueDiff = newBlue - ((signed char) mBlue);
-
-         printf("%i\n", mRedDiff);
+         mRedDiff = newRed - mRed;
+         mGreenDiff = newGreen - mGreen;
+         mBlueDiff = newBlue - mBlue;
 
          mInterval = 1;
    	}

@@ -18,29 +18,29 @@ public:
       for (int behaviourIndex = 0; behaviourIndex < global::MAX_CHANNELS; behaviourIndex++)
       {
          int dataIndex = behaviourIndex * global::MAX_CHANNEL_DATA;
-         unsigned char type = data[dataIndex+0];
-         unsigned char oldRed = behaviours[behaviourIndex]->getRed();
-         unsigned char oldGreen = behaviours[behaviourIndex]->getGreen();
-         unsigned char oldBlue = behaviours[behaviourIndex]->getBlue();
+         signed char type = data[dataIndex+0];
+         signed char oldRed = behaviours[behaviourIndex]->getRed();
+         signed char oldGreen = behaviours[behaviourIndex]->getGreen();
+         signed char oldBlue = behaviours[behaviourIndex]->getBlue();
 
          if (type == B_FADE_TO_SIMPLE) {
-            unsigned char red = data[dataIndex+1];
-            unsigned char green = data[dataIndex+2];
-            unsigned char blue = data[dataIndex+3];
+            signed char red = data[dataIndex+1];
+            signed char green = data[dataIndex+2];
+            signed char blue = data[dataIndex+3];
 
             printf(RED "%.0i" RESET, type);
             printf(YELLOW " --> %.0i | %.0i | %.0i \n" RESET, red, green, blue);
             behaviours[behaviourIndex] = new FadeToSimple(oldRed, oldGreen, oldBlue, red, green, blue);
          
          } else if (type == B_SIN_CURVE) {
-            unsigned char minRed = data[dataIndex+1];
-            unsigned char maxRed = data[dataIndex+2];
-            unsigned char minGreen = data[dataIndex+3];
-            unsigned char maxGreen = data[dataIndex+4];
-            unsigned char minBlue = data[dataIndex+5];
-            unsigned char maxBlue = data[dataIndex+6];
-            unsigned char speed = data[dataIndex+7];
-            unsigned char offset = data[dataIndex+8];
+            signed char minRed = data[dataIndex+1];
+            signed char maxRed = data[dataIndex+2];
+            signed char minGreen = data[dataIndex+3];
+            signed char maxGreen = data[dataIndex+4];
+            signed char minBlue = data[dataIndex+5];
+            signed char maxBlue = data[dataIndex+6];
+            signed char speed = data[dataIndex+7];
+            signed char offset = data[dataIndex+8];
 
             behaviours[behaviourIndex] = new SinCurve(oldRed, oldGreen, oldBlue, 
                      minRed, maxRed, 
