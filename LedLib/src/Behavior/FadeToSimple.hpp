@@ -6,9 +6,9 @@ class FadeToSimple : public BaseBehavior {
 
 private:
    double FROM_ZERO_TO_ONE = 0.5;
-   char mRedDiff;
-   char mGreenDiff;
-   char mBlueDiff;
+   signed char mRedDiff;
+   signed char mGreenDiff;
+   signed char mBlueDiff;
 
    char mRedStart;
    char mGreenStart;
@@ -18,17 +18,17 @@ public:
    	FadeToSimple(char red, 
 		   		char green, 
 		   		char blue,
-               char newRed,
-               char newGreen,
-               char newBlue) 
+               signed char newRed,
+               signed char newGreen,
+               signed char newBlue) 
       : BaseBehavior(red, green, blue) {
          mRedStart = red;
          mGreenStart = green;
          mBlueStart = blue;
 
-         mRedDiff = newRed - mRed;
-         mGreenDiff = newGreen - mGreen;
-         mBlueDiff = newBlue - mBlue;
+         mRedDiff = newRed - ((signed char) mRed);
+         mGreenDiff = newGreen - ((signed char) mGreen);
+         mBlueDiff = newBlue - ((signed char) mBlue);
 
          printf("%i\n", mRedDiff);
 
