@@ -61,7 +61,7 @@ void Server::start() {
              ms = 0;
          }
          long double currentTime = (s * 1000.0) + ms;
-         printf("%Lf\n", currentTime);
+         //printf("%Lf\n", currentTime);
 
         int interval = update(currentTime);
         //printf("update: %x\n", interval);
