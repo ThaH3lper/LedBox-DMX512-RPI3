@@ -61,7 +61,7 @@ void Server::start() {
              ms = 0;
          }
          long double currentTime = (s * 1000.0) + ms;
-         //printf("%Lf\n", currentTime);
+         printf(GREEN "%Lf\n" RESET, currentTime);
 
         int interval = update(currentTime);
         //printf("update: %x\n", interval);
@@ -82,6 +82,10 @@ double Server::update(double delta) {
     for (int i = 0; i < 10; ++i)
     {
         mBehaviors[i]->update(delta);
+
+        if(i == 0) {
+            printf(RED "setChannel(%i, %i, %i, %i)", i, mBehaviors[i]->getGreen(), mBehaviors[i]->getRed(), mBehaviors[i]->getBlue());
+        }
 
         mDmxController.setChannel(i, mBehaviors[i]->getGreen(),
             mBehaviors[i]->getRed(), mBehaviors[i]->getBlue());
