@@ -44,6 +44,10 @@ void DmxController::setChannel(int channel,
 					unsigned char red,
 					unsigned char green,
 					unsigned char blue) {
+	if (red < 0 || green < 0 || blue < 0 || 
+		red > 127 || green > 127 || blue > 127) {
+		printf(RED "ERROR! Value outside range! This should never happen");
+	}
 	mDmxData[channel * 3 + 1] = red; 
 	mDmxData[channel * 3 + 2] = green;
 	mDmxData[channel * 3 + 3] = blue;

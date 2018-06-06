@@ -15,9 +15,9 @@ protected:
 	double mInterval;
    long double mStartTime;
    long double mCurrentTime;
-	unsigned char mRed;
-	unsigned char mGreen;
-	unsigned char mBlue;
+	char mRed;
+	char mGreen;
+	char mBlue;
 
 public:
       BaseBehavior() {
@@ -27,27 +27,16 @@ public:
          mInterval = DEFAULT_INTERVAL;
       }
 
-   	BaseBehavior(unsigned char red, 
-		   		unsigned char green, 
-		   		unsigned char blue) {
+   	BaseBehavior(char red, 
+		   		char green, 
+		   		char blue) {
 
          mRed = red;
          mGreen = green;
          mBlue = blue;
          mInterval = DEFAULT_INTERVAL;
 
-         struct timespec gettime_now;
-         clock_gettime(CLOCK_REALTIME, &gettime_now);
-         time_t s = gettime_now.tv_sec;
-         long ms = round(gettime_now.tv_nsec / 1.0e6);
-         if (ms > 999) {
-             s++;
-             ms = 0;
-         }
-
-         mStartTime = (s * 1000.0) + ms;
-         printf("START --> %Lf\n", mStartTime);
-         //mStartTime = std::time(nullptr) * 1000.0;
+         mStartTime = getCurrentTimeMS();
    	}
 
       BaseBehavior & operator=(BaseBehavior const & other) = default;
@@ -56,15 +45,15 @@ public:
       	return mInterval;
       }
 
-      unsigned char getRed() {
+      char getRed() {
       	return mRed;
       }
 
-      unsigned char getGreen() {
+      char getGreen() {
       	return mGreen;
       }
 
-      unsigned char getBlue() {
+      char getBlue() {
       	return mBlue;
       }
 

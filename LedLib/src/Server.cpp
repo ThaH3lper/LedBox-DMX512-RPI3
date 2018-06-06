@@ -45,23 +45,15 @@ void Server::start() {
         //Check if mSMData has changed from clients.
         unsigned char * data = mSMData.readMemory();
         if (memcmp(data, currentArray, global::DATA_SIZE) != 0) {
-            printf("CHANGED!\n");
+            printf(GREEN "CHANGED!\n" RESET);
             memcpy(currentArray, data, global::DATA_SIZE);
             //mDmxController.printData();
             mSelector.select(data, mBehaviors);
         }
 
         //Calculate delta value for update
-         struct timespec gettime_now;
-         clock_gettime(CLOCK_REALTIME, &gettime_now);
-         time_t s = gettime_now.tv_sec;
-         long ms = round(gettime_now.tv_nsec / 1.0e6);
-         if (ms > 999) {
-             s++;
-             ms = 0;
-         }
-         long double currentTime = (s * 1000.0) + ms;
-         printf(GREEN "%Lf\n" RESET, currentTime);
+        long double currentTime = getCurrentTimeMS();
+        //printf(GREEN "%Lf\n" RESET, currentTime);
 
         int interval = update(currentTime);
         //printf("update: %x\n", interval);
@@ -84,7 +76,7 @@ double Server::update(long double currentTime) {
         mBehaviors[i]->update(currentTime);
 
         if(i == 0) {
-            printf(RED "setChannel(%i, %i, %i, %i)", i, mBehaviors[i]->getGreen(), mBehaviors[i]->getRed(), mBehaviors[i]->getBlue());
+            printf(RED "setChannel(%i, %i, %i, %i)\n", i, mBehaviors[i]->getGreen(), mBehaviors[i]->getRed(), mBehaviors[i]->getBlue());
         }
 
         mDmxController.setChannel(i, mBehaviors[i]->getGreen(),

@@ -22,6 +22,7 @@
 void delay_ms (unsigned int howLong);
 void delay_us (unsigned int howLong);
 unsigned char getColorValue (double value);
+long double getCurrentTimeMS ();
 
 
 namespace global {

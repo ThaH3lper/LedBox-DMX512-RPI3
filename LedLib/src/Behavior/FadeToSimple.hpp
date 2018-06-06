@@ -10,17 +10,17 @@ private:
    char mGreenDiff;
    char mBlueDiff;
 
-   unsigned char mRedStart;
-   unsigned char mGreenStart;
-   unsigned char mBlueStart;
+   char mRedStart;
+   char mGreenStart;
+   char mBlueStart;
 
 public:
-   	FadeToSimple(unsigned char red, 
-		   		unsigned char green, 
-		   		unsigned char blue,
-               unsigned char newRed,
-               unsigned char newGreen,
-               unsigned char newBlue) 
+   	FadeToSimple(char red, 
+		   		char green, 
+		   		char blue,
+               char newRed,
+               char newGreen,
+               char newBlue) 
       : BaseBehavior(red, green, blue) {
          mRedStart = red;
          mGreenStart = green;
