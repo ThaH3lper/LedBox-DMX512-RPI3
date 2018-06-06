@@ -13,8 +13,8 @@ class BaseBehavior {
 
 protected:
 	double mInterval;
-   unsigned long mStartTime;
-   unsigned long mCurrentTime;
+   long double mStartTime;
+   long double mCurrentTime;
 	unsigned char mRed;
 	unsigned char mGreen;
 	unsigned char mBlue;
@@ -46,6 +46,7 @@ public:
          }
 
          mStartTime = (s * 1000.0) + ms;
+         printf("START --> %Lf\n", mStartTime);
          //mStartTime = std::time(nullptr) * 1000.0;
    	}
 
