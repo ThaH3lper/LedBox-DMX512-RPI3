@@ -6,7 +6,7 @@
 #include <math.h>
 #include "../global.h"
 
-#define DEFAULT_INTERVAL 3000.0
+#define DEFAULT_INTERVAL 300.0
 #define PI 3.14159265
 
 class BaseBehavior {

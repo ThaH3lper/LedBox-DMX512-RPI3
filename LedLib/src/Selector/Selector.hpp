@@ -8,8 +8,6 @@
 #include "../Behavior/FadeToSimple.hpp"
 #include "../Behavior/SinCurve.hpp"
 
-#define DEFAULT_INTERVAL 3000.0
-
 class Selector {
 
 public:
