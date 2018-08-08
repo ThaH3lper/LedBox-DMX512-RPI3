@@ -25,6 +25,11 @@
  * 	Sin curver:
  * 		ID: 2
  * 		PARAMS [RED_MIN] [RED_MAX] [GREEN_MIN] [GREEN_MAX] [BLUE_MIN] [BLUE_MAX] [SPEED] [OFFSET]
+ *
+ *--------------------------------------------
+ * 	Rainbow:
+ * 		ID: 3
+ * 		PARAMS [MAX VALUE] [SPEED_MILIS]
  */
 
 int main (int argc, char *argv[])

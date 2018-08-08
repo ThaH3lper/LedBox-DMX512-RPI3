@@ -18,6 +18,7 @@
 
 #define B_FADE_TO_SIMPLE 1
 #define B_SIN_CURVE 2
+#define B_RAINBOW 3
 
 void delay_ms (unsigned int howLong);
 void delay_us (unsigned int howLong);

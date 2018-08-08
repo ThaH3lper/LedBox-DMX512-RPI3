@@ -29,7 +29,7 @@ bool DmxController::setup() {
     	return false;
 	}
  
-	mFTStatus = FT_SetBaudRate(mFTHandle, 210000);
+	mFTStatus = FT_SetBaudRate(mFTHandle, 215000);
 	if (mFTStatus != FT_OK) {
 		FT_Close(mFTHandle);
 		printf(RED "Can't set baudrate" RESET "\n");

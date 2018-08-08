@@ -7,6 +7,7 @@
 #include "../Behavior/BaseBehavior.hpp"
 #include "../Behavior/FadeToSimple.hpp"
 #include "../Behavior/SinCurve.hpp"
+#include "../Behavior/Rainbow.hpp"
 
 class Selector {
 
@@ -46,6 +47,12 @@ public:
                      minBlue, maxBlue,
                      speed, offset * behaviourIndex);
          
+         } else if (type == B_RAINBOW) {
+            signed char maxValue = data[dataIndex+1];
+            signed char speed = data[dataIndex+2];
+
+            behaviours[behaviourIndex] = new Rainbow(oldRed, oldGreen, oldBlue, 
+                     maxValue, speed);
          } else {
             printf(RED "UNDEFINED" RESET "\n");
          }

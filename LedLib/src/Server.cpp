@@ -75,9 +75,9 @@ double Server::update(long double currentTime) {
     {
         mBehaviors[i]->update(currentTime);
 
-        if(i == 0) {
+        /*if(i == 0) {
             printf(RED "setChannel(%i, %i, %i, %i)\n", i, mBehaviors[i]->getGreen(), mBehaviors[i]->getRed(), mBehaviors[i]->getBlue());
-        }
+        }*/
 
         mDmxController.setChannel(i, mBehaviors[i]->getGreen(),
             mBehaviors[i]->getRed(), mBehaviors[i]->getBlue());
