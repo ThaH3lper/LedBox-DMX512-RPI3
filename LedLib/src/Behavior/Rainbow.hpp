@@ -33,26 +33,32 @@ public:
          long double value = std::fmod((currentTime - mStartTime), mSpeed);
          double partValue = std::fmod(value, mPartSpeed);
          if (value <= mPartSpeed) {
+            printf("1");
             mRed = mMaxValue;
             mBlue = partValue / mPartSpeed * mMaxValue * 1.0;
             mGreen = 0;
          } else if (value > mPartSpeed && value <= mPartSpeed * 2) {
+            printf("2");
             mRed = partValue / mPartSpeed * mMaxValue * -1.0;
             mBlue = mMaxValue;
             mGreen = 0;
          } else if (value > mPartSpeed * 2 && value <= mPartSpeed * 3) {
+            printf("3");
             mRed = 0;
             mBlue = mBlue;
             mGreen = partValue / mPartSpeed * mMaxValue * 1.0;
          } else if (value > mPartSpeed * 3 && value <= mPartSpeed * 4) {
+            printf("4");
             mRed = 0;
             mBlue = partValue / mPartSpeed * mMaxValue * -1.0;
             mGreen = mMaxValue;
          } else if (value > mPartSpeed * 4 && value <= mPartSpeed * 5) {
+            printf("5");
             mRed = partValue / mPartSpeed * mMaxValue * 1.0;
             mBlue = 0;
             mGreen = mMaxValue;
          } else if (value > mPartSpeed * 5) {
+            printf("6");
             mRed = mMaxValue;
             mBlue = 0;
             mGreen = partValue / mPartSpeed * mMaxValue * -1.0;

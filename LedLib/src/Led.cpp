@@ -82,10 +82,14 @@ int main (int argc, char *argv[])
 			printf(GRAY "./Led start | Start the server" RESET "\n");
 			printf(GRAY "./Led stop  | Stop the server" RESET "\n");
 			printf(GRAY "./Led all [PROGRAM] | Set program for all channels" RESET "\n");
-			printf(GRAY "./Led channel [PROGRAM] | Set program for single channel" RESET "\n");
+			printf(GRAY "./Led channel [CHANNEL] [PROGRAM] | Set program for single channel" RESET "\n");
 			printf(GRAY "-------- Programs ----------" RESET "\n");
 			printf(GRAY "1 [R] [G] [B] | Simple fade to color" RESET "\n");
 			printf(GRAY "2 [minR] [maxR] [minG] [maxG] [minB] [maxB] [speed] [offset] | Set sin curver" RESET "\n");
+			printf(GRAY "3 [max(127)] [speed full loop seconds] | Set Rainbow loop" RESET "\n");
+			printf(GRAY "-------- CHANNELS ----------" RESET "\n");
+			printf(GRAY "|___ _TV_ ___| |_Bass_|" RESET "\n");
+			printf(GRAY "  1    2   3       0" RESET "\n");
 		}
 	return 0;
 }
