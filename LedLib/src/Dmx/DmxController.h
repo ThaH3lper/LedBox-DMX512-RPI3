@@ -32,6 +32,8 @@ public:
 
 	void printData();
 
+	unsigned char * getData();
+
 };
 
 #endif

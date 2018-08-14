@@ -71,6 +71,10 @@ void Server::stop() {
 
 double Server::update(long double currentTime) {
     double lowest = DEFAULT_INTERVAL;
+
+    unsigned char * test = mDmxController.getData();
+    memcpy(test, mDmxController.getData(), 512);
+
     for (int i = 0; i < 10; ++i)
     {
         mBehaviors[i]->update(currentTime);
@@ -86,6 +90,13 @@ double Server::update(long double currentTime) {
             lowest = mBehaviors[i]->getUpdateInterval();
         }
     }
+
+    if (memcmp(test, mDmxController.getData(), 512) != 0) {
+            printf(RED "C.h.a.n.g.e.d!\n" RESET);
+        }
+
+
+
     mDmxController.sendData();
     return lowest;
 }

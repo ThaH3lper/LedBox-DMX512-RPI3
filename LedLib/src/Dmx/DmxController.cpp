@@ -73,3 +73,7 @@ void DmxController::printData() {
 	}
 	printf("]\n");
 }
+
+unsigned char * DmxController::getData() {
+	return mDmxData;
+}
