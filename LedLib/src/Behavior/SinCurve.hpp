@@ -5,7 +5,6 @@
 class SinCurve : public BaseBehavior {
 
 private:
-   double FROM_ZERO_TO_ONE = 1.0;
    signed char mRedDiff;
    signed char mGreenDiff;
    signed char mBlueDiff;
@@ -23,7 +22,7 @@ public:
                signed char minGreen, signed char maxGreen,
                signed char minBlue, signed char maxBlue,
                signed char speed,
-               signed char offset) 
+               signed char offset)
       : BaseBehavior(red, green, blue) {
 
          mRedDiff = maxRed - minRed;
@@ -35,7 +34,7 @@ public:
          minimumBlue = minBlue;
 
          mSpeed = speed;
-         mOffset = offset;
+         mOffset = offset * 1000.0;
 
          mInterval = 1;
 
@@ -44,8 +43,8 @@ public:
       SinCurve & operator=(const SinCurve&) = default;
 
       void update(long double currentTime) {
-         double value = (currentTime - mStartTime) / FROM_ZERO_TO_ONE / 1000.0;
-         double zeroToOne = sin((value / mSpeed) + mOffset / 10.0) * 0.5 + 0.5;
+         double value = currentTime  / 1000.0 * PI * 2.0;
+         double zeroToOne = sin(value / mSpeed + mOffset / 100.0) * 0.5 + 0.5;
 
          mRed = minimumRed + mRedDiff * zeroToOne;
          mGreen = minimumGreen + mGreenDiff * zeroToOne;

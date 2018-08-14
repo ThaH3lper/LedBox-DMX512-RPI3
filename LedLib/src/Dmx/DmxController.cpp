@@ -1,6 +1,6 @@
 #include "DmxController.h"
 void DmxController::clear() {
-	/* 
+	/*
 	FT_Open can fail if the ftdi_sio driver is loaded
 	use lsmod to check this and rmmod ftdi_sio to remove
 	also rmmod usbserial
@@ -18,18 +18,18 @@ bool DmxController::setup() {
 
 	mFTStatus = FT_Open(0, &mFTHandle);
 	if (mFTStatus != FT_OK) {
-    	printf(RED "FT_Open() failed" RESET "\n");
-    	return false;
+    	      	printf(RED "FT_Open() failed" RESET "\n");
+    		return false;
 	}
- 
+
 	mFTStatus = FT_SetDataCharacteristics(mFTHandle, FT_BITS_8, FT_STOP_BITS_2,FT_PARITY_NONE);
 	if (mFTStatus != FT_OK) {
-    	FT_Close(mFTHandle);
-    	printf(RED "Can't set characteristics" RESET "\n");
-    	return false;
+    		FT_Close(mFTHandle);
+    		printf(RED "Can't set characteristics" RESET "\n");
+    		return false;
 	}
- 
-	mFTStatus = FT_SetBaudRate(mFTHandle, 215000);
+
+	mFTStatus = FT_SetBaudRate(mFTHandle, 220183.486239);
 	if (mFTStatus != FT_OK) {
 		FT_Close(mFTHandle);
 		printf(RED "Can't set baudrate" RESET "\n");
@@ -60,8 +60,9 @@ void DmxController::sendData() {
     mFTStatus = FT_SetBreakOff(mFTHandle);
     delay_us(8);
     mFTStatus = FT_Write(mFTHandle, mStart, sizeof(mStart), &BytesWritten);
-	mFTStatus = FT_Write(mFTHandle, mDmxData, sizeof(mDmxData), &BytesWritten);
-	delay_ms(15);
+    mFTStatus = FT_Write(mFTHandle, mDmxData, sizeof(mDmxData), &BytesWritten);
+    delay_ms(25);
+
 }
 
 void DmxController::printData() {

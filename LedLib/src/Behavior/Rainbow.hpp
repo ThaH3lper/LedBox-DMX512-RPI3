@@ -23,6 +23,7 @@ public:
          mBlue = blue;
          mSpeed = speed * 1000;
          mPartSpeed = speed * 1000 / 6;
+         mMaxValue = maxValue;
 
          mInterval = 25;
    	}
@@ -34,7 +35,7 @@ public:
          double partValue = std::fmod(value, mPartSpeed);
          //printf("%f\n", partValue);
          if (value <= mPartSpeed) {
-            //printf("1   ");
+            //printf("%i\n", mBlue);
             mRed = mMaxValue;
             mBlue = partValue / mPartSpeed * mMaxValue * 1.0;
             mGreen = 0;

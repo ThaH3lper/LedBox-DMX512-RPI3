@@ -70,7 +70,7 @@ void Server::stop() {
 }
 
 double Server::update(long double currentTime) {
-    double lowest = 10000;
+    double lowest = DEFAULT_INTERVAL;
     for (int i = 0; i < 10; ++i)
     {
         mBehaviors[i]->update(currentTime);
